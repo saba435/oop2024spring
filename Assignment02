@@ -16,13 +16,17 @@ public class Assignment02 {
 
 package package1;
 
-public class HappyGirl {
+package quizes.q1.saba_vashakmadze_1.javarules;
 
+
+public class HappyBoy {
 }
 
 
 package package2;
 
-public class HappyBoy {
+package quizes.q1.saba_vashakmadze_1.iliaunirules;
 
+
+public class HappyGirl {
 }
