@@ -19,7 +19,7 @@ package package1;
 package quizes.q1.saba_vashakmadze_1.javarules;
 
 
-public class HappyBoy {
+public class A {
 }
 
 
@@ -28,5 +28,5 @@ package package2;
 package quizes.q1.saba_vashakmadze_1.iliaunirules;
 
 
-public class HappyGirl {
+public class B {
 }
