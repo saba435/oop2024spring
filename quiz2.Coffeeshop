@@ -1,0 +1,29 @@
+package quizes.q2.saba_vashakmadze_1.car;
+
+public class CoffeeShop {
+
+    public static void main(String[] args) {
+        int pricePerCoffee = 250; // tetri
+        int numCoffeeSold = 100;
+        int totalCostOfBeans = 15000; // tetri
+
+        // Include all the expenses provided
+        int tax = 7800; // 78 lari in tetri
+        int water = 83; // tetri
+        int gas = 379; // tetri
+        int electricity = 6400; // 64 lari in tetri
+        int parking = 7800; // 78 lari in tetri
+        int otherExpenses = tax + water + gas + electricity + parking;
+
+        double profit = calculateProfit(pricePerCoffee, numCoffeeSold, totalCostOfBeans, otherExpenses);
+        System.out.println("Profit in Laris: " + profit);
+    }
+
+    public static double calculateProfit(int pricePerCoffee, int numCoffeeSold, int totalCostOfBeans, int otherExpenses) {
+        double revenue = pricePerCoffee * numCoffeeSold;
+        double totalExpenses = totalCostOfBeans + otherExpenses;
+        double profitInTetri = revenue - totalExpenses;
+        double profitInLaris = profitInTetri / 100.0; // Convert profit from tetri to laris
+        return profitInLaris;
+    }
+}
