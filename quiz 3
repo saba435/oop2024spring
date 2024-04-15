@@ -1,0 +1,98 @@
+public class Room {
+    private int roomNumber;
+    private boolean occupied;
+    private Person occupant;
+
+    public Room(int roomNumber) {
+        this.roomNumber = roomNumber;
+        this.occupied = false;
+    }
+
+    public int getRoomNumber() {
+        return roomNumber;
+    }
+
+    public boolean isOccupied() {
+        return occupied;
+    }
+
+    public Person getOccupant() {
+        return occupant;
+    }
+
+    public void setOccupied(boolean occupied) {
+        this.occupied = occupied;
+    }
+
+    public void setOccupant(Person occupant) {
+        this.occupant = occupant;
+    }
+}
+import java.util.HashMap;
+import java.util.Map;
+
+public class HotelManager {
+    private Map<String, Room> guestRooms;
+
+    public HotelManager() {
+        this.guestRooms = new HashMap<>();
+    }
+
+    public void checkIn(Person person, Room room) {
+        if (!room.isOccupied()) {
+            room.setOccupied(true);
+            room.setOccupant(person);
+            guestRooms.put(person.getId(), room);
+            System.out.println(person.getName() + " " + person.getSurname() + " checked into Room " + room.getRoomNumber());
+        } else {
+            System.out.println("Room " + room.getRoomNumber() + " is already occupied.");
+        }
+    }
+
+    public void checkOut(Person person) {
+        Room room = guestRooms.get(person.getId());
+        if (room != null) {
+            System.out.println(person.getName() + " " + person.getSurname() + " checked out from Room " + room.getRoomNumber());
+            room.setOccupied(false);
+            room.setOccupant(null);
+            guestRooms.remove(person.getId());
+        } else {
+            System.out.println(person.getName() + " " + person.getSurname() + " is not checked in.");
+        }
+    }
+
+    public void displayInfo() {
+        System.out.println("Guests and Rooms Information:");
+        for (Map.Entry<String, Room> entry : guestRooms.entrySet()) {
+            System.out.println("Guest ID: " + entry.getKey() + ", Room Number: " + entry.getValue().getRoomNumber());
+        }
+    }
+}
+public class Hotel {
+    public static void main(String[] args) {
+        // Create a Hotel Manager
+        HotelManager manager = new HotelManager();
+
+        // Get list of persons from PersonManager class
+        List<Person> persons = PersonManager.getPersons();
+
+        // Assuming Saba Vashakmadze is person with id: 0000000000
+        Person saba = new Person();
+        saba.setId("0000000000");
+        saba.setName("Saba");
+        saba.setSurname("Vashakmadze");
+
+        // Get a random person from the list
+        Person randomPerson = persons.get(0);
+
+        // Create rooms
+        Room room = new Room(101);
+
+        // Check-in Saba and a random person into the same room
+        manager.checkIn(saba, room);
+        manager.checkIn(randomPerson, room);
+
+        // Display guests and their rooms
+        manager.displayInfo();
+    }
+}
